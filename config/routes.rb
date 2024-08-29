@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root "application#hello"
+  get 'home_page/index'
+  root "home_page#index"
 end
