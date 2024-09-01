@@ -18,12 +18,12 @@
           <i class="ion-heart"></i>
           &nbsp; Favorite Post <span class="counter">(29)</span>
         </button>
-        <button class="btn btn-sm btn-outline-secondary">
+        <%= link_to edit_article_page_path(@article), class: "btn btn-sm btn-outline-secondary" do %>
           <i class="ion-edit"></i> Edit Article
-        </button>
-        <button class="btn btn-sm btn-outline-danger">
+        <% end %>
+        <%= link_to delete_article_page_path(@article), data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" do %>
           <i class="ion-trash-a"></i> Delete Article
-        </button>
+        <% end %>
       </div>
     </div>
   </div>
@@ -61,12 +61,12 @@
           <i class="ion-heart"></i>
           &nbsp; Favorite Article <span class="counter">(29)</span>
         </button>
-        <button class="btn btn-sm btn-outline-secondary">
+        <%= link_to edit_article_page_path(@article), class: "btn btn-sm btn-outline-secondary" do %>
           <i class="ion-edit"></i> Edit Article
-        </button>
-        <button class="btn btn-sm btn-outline-danger">
+        <% end %>
+        <%= link_to delete_article_page_path(@article), class: "btn btn-sm btn-outline-danger" do %>
           <i class="ion-trash-a"></i> Delete Article
-        </button>
+        <% end %>
       </div>
     </div>
 
