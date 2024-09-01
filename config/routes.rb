@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  resources :article_page, only: [:index, :show, :new, :edit, :update]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  post 'article_pages', to: 'article_page#create'
+  get 'article_page/delete/:id', to: 'article_page#destroy', as: 'delete_article_page'
+  root "article_page#index"
 end
