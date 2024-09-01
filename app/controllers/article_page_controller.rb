@@ -13,7 +13,7 @@ class ArticlePageController < ApplicationController
 
   def create
     tag_list_param = params[:article_page][:tag_list]
-    tag_list_array = tag_list_param.is_a?(String) ? tag_list_param.split(',') : tag_list_param
+    tag_list_array = tag_list_param.split(',')
 
     @article = ArticlePage.new(article_params.merge(tag_list: tag_list_array))
     if @article.save
