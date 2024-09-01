@@ -32,7 +32,7 @@
                 <i class="ion-heart"></i> 29
               </button>
             </div>
-            <a href="/article/how-to-build-webapps-that-scale" class="preview-link">
+            <%= link_to article_page_show_path(id: article.id), class: "preview-link" do %>
               <h1><%= article.title %></h1>
               <p><%= article.description %></p>
               <span>Read more...</span>
@@ -41,7 +41,7 @@
                   <li class="tag-default tag-pill tag-outline"><%= tag %></li>
                 <% end %>
               </ul>
-            </a>
+            <% end %>
           </div>
         <% end %>
 

@@ -4,7 +4,7 @@ class ArticlePageController < ApplicationController
   end
 
   def show
-    @articles = ArticlePage.all
+    @article = ArticlePage.find(params[:id])
   end
 
   def new
