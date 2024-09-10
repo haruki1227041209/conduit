@@ -1,23 +1,33 @@
 require "test_helper"
 
 class ArticlePageControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get article_page_index_url
-    assert_response :success
+
+  def setup
+    @base_title = "Conduit"
+    @article_page = article_pages(:one)
   end
 
-  test "should get show" do
-    get article_page_show_url
+  test "should get home" do
+    get root_path
     assert_response :success
+    assert_select "title", "home | #{@base_title}"
   end
 
   test "should get new" do
-    get article_page_new_url
+    get new_article_page_path
     assert_response :success
+    assert_select "title", "new | #{@base_title}"
+  end
+
+  test "should get show" do
+    get article_page_path(@article_page.id)  # id を渡す
+    assert_response :success
+    assert_select "title", "show | #{@base_title}"
   end
 
   test "should get edit" do
-    get article_page_edit_url
+    get edit_article_page_path(@article_page.id)  # id を渡す
     assert_response :success
+    assert_select "title", "edit | #{@base_title}"
   end
 end
