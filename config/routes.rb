@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   root "article_page#index"
 
   namespace :api do
+    resources :users, only: [:create, :update]
     get '/users', to: 'users#index'
-    post '/users', to: 'users#create'
     post '/login', to: 'authentication#login'
   end
 end
