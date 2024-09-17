@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     resources :users, only: [:create, :update]
     get '/users', to: 'users#index'
     post '/login', to: 'authentication#login'
+
+    post '/articles', to: 'articles#create'
   end
 end
