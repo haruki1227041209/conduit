@@ -1,19 +1,19 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: "First Article"
-  description: "Description of the first article."
-  body: "This is the body of the first article. It contains detailed information."
-  tag_list:
-    - programming
-    - ruby
-    - rails
+# one:
+#   title: "First Article"
+#   description: "Description of the first article."
+#   body: "This is the body of the first article. It contains detailed information."
+#   tag_list:
+#     - programming
+#     - ruby
+#     - rails
 
-two:
-  title: "Second Article"
-  description: "Description of the second article."
-  body: "This is the body of the second article. It covers different topics."
-  tag_list:
-    - javascript
-    - nodejs
-    - react
+# two:
+#   title: "Second Article"
+#   description: "Description of the second article."
+#   body: "This is the body of the second article. It covers different topics."
+#   tag_list:
+#     - javascript
+#     - nodejs
+#     - react

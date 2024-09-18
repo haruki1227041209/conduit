@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  belongs_to :user
+
   before_save :generate_slug
 
   validates :title, presence: true, length: { maximum: 100 }
