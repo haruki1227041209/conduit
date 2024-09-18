@@ -1,5 +1,10 @@
 class Api::ArticlesController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create]
+  skip_before_action :authenticate_user, only: [:create, :show]
+
+  def show
+    @article = Article.find_by(slug: params[:slug])
+    render json: @article
+  end
 
   def create
     tag_list_array = params[:article][:tagList]
