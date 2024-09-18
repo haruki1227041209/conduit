@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '/users', to: 'users#index'
     post '/login', to: 'authentication#login'
 
+    get '/articles/:slug', to: 'articles#show'
     post '/articles', to: 'articles#create'
   end
 end

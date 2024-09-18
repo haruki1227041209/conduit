@@ -1,5 +1,10 @@
 class Api::ArticlesController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create]
+  skip_before_action :authenticate_user, only: [:create, :show]
+
+  def show
+    @article = Article.find_by(slug: params[:slug])
+    render json: @article
+  end
 
   def create
     tag_list_array = params[:article][:tagList]
@@ -15,6 +20,6 @@ class Api::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :description, :body, :tag_list)
+    params.require(:article).permit(:title, :description, :body, :tag_list, :slug)
   end
 end
