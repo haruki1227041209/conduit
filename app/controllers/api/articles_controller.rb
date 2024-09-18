@@ -1,5 +1,5 @@
 class Api::ArticlesController < ApplicationController
-  skip_before_action :authenticate_user, only: [:create, :show]
+  skip_before_action :authenticate_user, only: [:create, :show, :update]
 
   def show
     @article = Article.find_by(slug: params[:slug])
@@ -17,9 +17,19 @@ class Api::ArticlesController < ApplicationController
     end
   end
 
+  def update
+    @article = Article.find_by(slug: params[:slug])
+
+    if @article.update(article_params)
+      render json: @article, status: :created
+    else
+      render json: { errors: @article.errors.full_messages }, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def article_params
-    params.require(:article).permit(:title, :description, :body, :tag_list, :slug)
+    params.require(:article).permit(:title, :description, :body, :slug, tag_list: [])
   end
 end
