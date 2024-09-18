@@ -7,7 +7,7 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
 
     if @article.save
       render json: @article, status: :created
@@ -17,7 +17,7 @@ class Api::ArticlesController < ApplicationController
   end
 
   def update
-    @article = Article.find_by(slug: params[:slug])
+    @article = current_user.articles.find_by(slug: params[:slug])
 
     if @article.update(article_params)
       render json: @article, status: :created
@@ -27,7 +27,7 @@ class Api::ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find_by(slug: params[:slug])
+    @article = current_user.articles.find_by(slug: params[:slug])
     @article.destroy
     head :no_content
   end
@@ -35,6 +35,6 @@ class Api::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :description, :body, :slug, tag_list: [])
+    params.require(:article).permit(:title, :description, :body, :slug, :user_id, tag_list: [])
   end
 end
