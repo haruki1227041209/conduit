@@ -1,22 +1,33 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 const About = () => {
+    const [article, setArticle] = useState([]);
+
     useEffect(() => {
-        axios
-            .get("http://localhost:3000/api/articles/how-to-train-your-dragon")
-            .then((res) => {
-                console.log(res.data);
-            });
-    });
+        const getArticle = async () => {
+            const res = await axios.get(
+                "http://localhost:3000/api/articles/how-to-train-your-dragon"
+            );
+            setArticle(res.data);
+        };
+        getArticle();
+    }, []);
     return (
         <>
+            <div>
+                <div key={article.id}>
+                    <h3>{article.title}</h3>
+                    <p>description: {article.description}</p>
+                    <p>body: {article.body}</p>
+                </div>
+            </div>
             <div class="article-page">
                 <div class="banner">
                     <div class="container">
-                        <h1>How to build webapps that scale</h1>
+                        <h1>{article.title}</h1>
 
                         <div class="article-meta">
                             <a href="/profile/eric-simons">
@@ -52,17 +63,7 @@ const About = () => {
                 <div class="container page">
                     <div class="row article-content">
                         <div class="col-md-12">
-                            <p>
-                                Web development technologies have evolved at an
-                                incredible clip over the past few years.
-                            </p>
-                            <h2 id="introducing-ionic">
-                                Introducing RealWorld.
-                            </h2>
-                            <p>
-                                It's a great solution for learning how other
-                                frameworks work.
-                            </p>
+                            <p>{article.body}</p>
                             <ul class="tag-list">
                                 <li class="tag-default tag-pill tag-outline">
                                     realworld
