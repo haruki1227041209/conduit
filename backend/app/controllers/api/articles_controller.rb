@@ -1,6 +1,11 @@
 class Api::ArticlesController < ApplicationController
   skip_before_action :authenticate_user, only: [:show]
 
+  def index
+    @articles = Article.all
+    render json: @articles
+  end
+
   def show
     @article = Article.find_by(slug: params[:slug])
     render json: @article
