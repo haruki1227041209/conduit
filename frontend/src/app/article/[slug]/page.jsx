@@ -2,28 +2,35 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
-const About = () => {
+const About = ({ params }) => {
     const [article, setArticle] = useState([]);
+    const { slug } = params;
+    const router = useRouter();
+    const token =
+        "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3Mjk3ODY3MjV9.oXF7lN9CVA3jHCpVr2eofUnjyb5jyzYCz4KjCEbJ6zo";
 
     useEffect(() => {
         const getArticle = async () => {
             const res = await axios.get(
-                "http://localhost:3000/api/articles/how-to-train-your-dragon"
+                `http://localhost:3000/api/articles/${slug}`
             );
             setArticle(res.data);
         };
         getArticle();
-    }, []);
+    }, [slug]);
+
+    const handleDelete = async () => {
+        await axios.delete(`http://localhost:3000/api/articles/${slug}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+        router.push("/");
+    };
     return (
         <>
-            <div>
-                <div key={article.id}>
-                    <h3>{article.title}</h3>
-                    <p>description: {article.description}</p>
-                    <p>body: {article.body}</p>
-                </div>
-            </div>
             <div class="article-page">
                 <div class="banner">
                     <div class="container">
@@ -50,10 +57,16 @@ const About = () => {
                                 &nbsp; Favorite Post{" "}
                                 <span class="counter">(29)</span>
                             </button>
-                            <button class="btn btn-sm btn-outline-secondary">
+                            <a
+                                href={`/article/${article.slug}/edit`}
+                                class="btn btn-sm btn-outline-secondary"
+                            >
                                 <i class="ion-edit"></i> Edit Article
-                            </button>
-                            <button class="btn btn-sm btn-outline-danger">
+                            </a>
+                            <button
+                                onClick={handleDelete}
+                                class="btn btn-sm btn-outline-danger"
+                            >
                                 <i class="ion-trash-a"></i> Delete Article
                             </button>
                         </div>
