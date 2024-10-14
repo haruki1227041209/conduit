@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const Edit = ({ params }) => {
     const { slug } = params;
@@ -14,6 +15,8 @@ const Edit = ({ params }) => {
             tag_list: "",
         },
     });
+
+    const router = useRouter();
 
     useEffect(() => {
         const getArticle = async () => {
@@ -51,6 +54,7 @@ const Edit = ({ params }) => {
                 },
             }
         );
+        router.push("/");
     };
 
     const handleChange = (e) => {

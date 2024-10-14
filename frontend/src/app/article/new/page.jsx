@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const New = () => {
     const [article, setArticle] = useState({
@@ -12,6 +13,8 @@ const New = () => {
             tag_list: "",
         },
     });
+
+    const router = useRouter();
 
     const token =
         "eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3Mjk3ODY3MjV9.oXF7lN9CVA3jHCpVr2eofUnjyb5jyzYCz4KjCEbJ6zo";
@@ -39,6 +42,7 @@ const New = () => {
                 },
             }
         );
+        router.push("/");
     };
 
     const handleChange = (e) => {
